@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quiz réseaux et informatique</title>
+  <link rel="stylesheet" href="style_3.css">
+</head>
+<body>
+  <main class="app">
+
+    <!-- Écran 1 : accueil -->
+    <section id="ecran-accueil" class="ecran">
+      <h1>Quiz réseaux et informatique</h1>
+      <p class="intro">
+        <span id="nb-questions"></span> questions sur les réseaux, le langage C
+        et l'architecture des ordinateurs. Chaque réponse est corrigée
+        immédiatement, avec une explication.
+      </p>
+      <label class="option">
+        <input type="checkbox" id="case-melanger" checked>
+        Mélanger l'ordre des questions
+      </label>
+      <button type="button" id="btn-demarrer" class="btn-principal">Commencer le quiz</button>
+      <p class="aide">Astuce : les touches 1 à 4 du clavier sélectionnent une réponse.</p>
+    </section>
+
+    <!-- Écran 2 : questions (rempli dynamiquement par script.js) -->
+    <section id="ecran-quiz" class="ecran" hidden>
+      <div class="entete-quiz">
+        <span id="categorie" class="badge"></span>
+        <span id="score" class="score"></span>
+      </div>
+      <div id="ports" class="ports" aria-hidden="true"></div>
+      <p id="progression" class="progression"></p>
+      <h2 id="enonce" class="enonce"></h2>
+      <div id="choix" class="choix"></div>
+      <p id="retour" class="retour" aria-live="polite"></p>
+      <button type="button" id="btn-suivant" class="btn-principal" hidden>Question suivante</button>
+    </section>
+
+    <!-- Écran 3 : résultat -->
+    <section id="ecran-resultat" class="ecran" hidden>
+      <h2>Résultat</h2>
+      <p id="score-final" class="score-final"></p>
+      <p id="message-final" class="message-final"></p>
+      <div id="bloc-recap" hidden>
+        <h3>Questions à revoir</h3>
+        <ul id="recap" class="recap"></ul>
+      </div>
+      <button type="button" id="btn-rejouer" class="btn-principal">Rejouer</button>
+    </section>
+
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

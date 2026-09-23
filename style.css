@@ -1,0 +1,351 @@
+/* ============================================================
+   Quiz réseaux et informatique — feuille de style
+   Thème : fond bleu marine sur toute la page.
+   Idée graphique : la progression est représentée par une rangée
+   de « ports » de commutateur réseau, qui s'allument en vert
+   (bonne réponse) ou en rouge (mauvaise réponse).
+   ============================================================ */
+
+:root {
+  --marine: #0b1f4a;          /* fond de toute la page */
+  --niveau: #12306b;          /* fond des boutons et zones en relief */
+  --niveau-survol: #1a3d80;
+  --encre: #f1f5fb;           /* texte principal (clair) */
+  --encre-douce: #b4c2dc;     /* texte secondaire */
+  --bordure: #3a5288;
+  --cable: #3b6fe0;           /* bleu des boutons principaux */
+  --cable-survol: #5a86e8;
+  --clair: #8fb3ff;           /* bleu clair pour les accents */
+  --juste: #2fbf7a;
+  --juste-fond: #0f4a36;
+  --faux: #ff6b6b;
+  --faux-fond: #5a1f2e;
+  --courant: #f2b632;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  padding: 2rem 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: var(--marine);
+  color: var(--encre);
+  font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  line-height: 1.5;
+}
+
+.app {
+  width: 100%;
+  max-width: 640px;
+  padding: 2rem;
+  background: var(--marine);
+  border: 1px solid var(--bordure);
+  border-top: 6px solid var(--cable);
+  border-radius: 14px;
+}
+
+/* L'attribut hidden doit toujours rester prioritaire */
+[hidden] {
+  display: none !important;
+}
+
+/* ---------- Titres et textes ---------- */
+
+.titre-page {
+  width: 100%;
+  max-width: 640px;
+  margin-bottom: 1.25rem;
+}
+
+h1 {
+  margin: 0;
+  font-size: 2rem;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  color: #ffffff;
+}
+
+h2 {
+  margin: 0 0 0.5rem;
+  font-size: 1.4rem;
+  line-height: 1.3;
+}
+
+h3 {
+  margin: 1.5rem 0 0.5rem;
+  font-size: 1.1rem;
+}
+
+.intro {
+  margin: 0 0 1.5rem;
+  color: var(--encre-douce);
+}
+
+.aide {
+  margin: 1rem 0 0;
+  font-size: 0.9rem;
+  color: var(--encre-douce);
+}
+
+.option {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 1.5rem;
+  cursor: pointer;
+}
+
+.option input {
+  width: 1.1rem;
+  height: 1.1rem;
+  accent-color: var(--clair);
+}
+
+/* ---------- Boutons ---------- */
+
+.btn-principal {
+  padding: 0.8rem 1.4rem;
+  font: inherit;
+  font-weight: 600;
+  color: #ffffff;
+  background: var(--cable);
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.btn-principal:hover {
+  background: var(--cable-survol);
+}
+
+:focus-visible {
+  outline: 3px solid var(--courant);
+  outline-offset: 2px;
+}
+
+/* ---------- Écran des questions ---------- */
+
+.entete-quiz {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+
+.badge {
+  padding: 0.2rem 0.7rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #cfe0ff;
+  background: #163a7a;
+  border-radius: 999px;
+}
+
+.score {
+  font-weight: 600;
+}
+
+/* Rangée de ports : un port par question */
+.ports {
+  display: flex;
+  gap: 6px;
+  margin: 1rem 0 0.5rem;
+}
+
+.port {
+  flex: 1;
+  max-width: 40px;
+  height: 14px;
+  background: var(--niveau);
+  border: 2px solid var(--bordure);
+  border-radius: 3px;
+}
+
+.port.courant {
+  background: #4d3a0a;
+  border-color: var(--courant);
+}
+
+.port.juste {
+  background: var(--juste);
+  border-color: var(--juste);
+}
+
+.port.faux {
+  background: var(--faux);
+  border-color: var(--faux);
+}
+
+.progression {
+  margin: 0 0 1rem;
+  font-size: 0.9rem;
+  color: var(--encre-douce);
+}
+
+.enonce {
+  margin-bottom: 1rem;
+}
+
+.choix {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  margin-bottom: 1rem;
+}
+
+.choix-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  width: 100%;
+  padding: 0.8rem 1rem;
+  font: inherit;
+  text-align: left;
+  color: var(--encre);
+  background: var(--niveau);
+  border: 2px solid var(--bordure);
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.choix-btn:not(:disabled):hover {
+  background: var(--niveau-survol);
+  border-color: var(--clair);
+}
+
+.choix-btn:disabled {
+  color: var(--encre);
+  cursor: default;
+}
+
+.choix-num {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.8rem;
+  height: 1.8rem;
+  font-size: 0.9rem;
+  font-weight: 700;
+  background: #1f3f7e;
+  border-radius: 6px;
+}
+
+/* Classes ajoutées par le JavaScript après une réponse */
+.choix-btn.correct {
+  background: var(--juste-fond);
+  border-color: var(--juste);
+}
+
+.choix-btn.correct .choix-num {
+  color: #04261a;
+  background: var(--juste);
+}
+
+.choix-btn.incorrect {
+  background: var(--faux-fond);
+  border-color: var(--faux);
+}
+
+.choix-btn.incorrect .choix-num {
+  color: #2b0509;
+  background: var(--faux);
+}
+
+.retour {
+  margin: 0;
+}
+
+.retour.succes,
+.retour.echec {
+  margin-bottom: 1rem;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+}
+
+.retour.succes {
+  background: var(--juste-fond);
+  border-left: 5px solid var(--juste);
+}
+
+.retour.echec {
+  background: var(--faux-fond);
+  border-left: 5px solid var(--faux);
+}
+
+/* ---------- Écran du résultat ---------- */
+
+.score-final {
+  margin: 0.5rem 0 0;
+  font-size: 3.5rem;
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  color: var(--clair);
+}
+
+.message-final {
+  margin: 0.5rem 0 0;
+  font-size: 1.15rem;
+}
+
+.recap {
+  margin: 0 0 1.5rem;
+  padding: 0;
+  list-style: none;
+}
+
+.recap li {
+  margin-bottom: 0.75rem;
+  padding: 0.6rem 0.9rem;
+  background: var(--faux-fond);
+  border-left: 5px solid var(--faux);
+  border-radius: 8px;
+}
+
+.recap li strong,
+.recap li span {
+  display: block;
+}
+
+.recap li span {
+  margin-top: 0.2rem;
+  font-size: 0.95rem;
+  color: var(--encre-douce);
+}
+
+/* ---------- Animations discrètes (respect des préférences système) ---------- */
+
+@media (prefers-reduced-motion: no-preference) {
+  .btn-principal,
+  .choix-btn,
+  .port {
+    transition: background-color 0.15s, border-color 0.15s;
+  }
+}
+
+/* ---------- Petits écrans ---------- */
+
+@media (max-width: 480px) {
+  body {
+    padding: 1rem 0.5rem;
+  }
+
+  .app {
+    padding: 1.25rem;
+  }
+
+  h1 {
+    font-size: 1.6rem;
+  }
+
+  .score-final {
+    font-size: 2.8rem;
+  }
+}
